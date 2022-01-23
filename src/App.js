@@ -6,7 +6,7 @@ require('dotenv').config()
 
 export default function App() {
 
-  const [data, setData] = useState({ results: [] });
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState(`https://api.openbrewerydb.org/breweries/search?query=${query}`);
 
@@ -30,6 +30,12 @@ export default function App() {
     lat: -3.745,
     lng: -38.523
   };
+
+
+
+
+
+
   return (
   <>
 
@@ -71,29 +77,22 @@ export default function App() {
         zoom={1}
       >
 
-{data.results  && data.results.map((brewery)=> (
+{ data.map((marker, markerIndex)=> (
 
 
-<div>
+<div key={markerIndex}>
 <p>test</p>
 
 
+
 <Marker
-key={brewery.id}
-position={{ lat: data.latitude, lng: data.longitude}}
 
+      position={{ lat: parseFloat(marker.latitude), lng: parseFloat( marker.longitude)}}
 
-/>
-
-
-
-
+    />
 
 </div>
-
-
  ))}
-
 
 
 
